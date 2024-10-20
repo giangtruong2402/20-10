@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc mừng 20/10</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="outside">
+                <img src="chinh.png" width="150" height="150" class="rounded-image"/>
+    
+                <h1>Chúc mừng 20-10</h1>
+                <h3>Gửi đến em trong ngày đặc biệt này!</h3>
+
+
+                <h3 class="clickable">Bấm vào đây</h3>
+
+            </div>
+            <div class="inside">
+                <img src="cakegif.gif" width="300" height="300"/>
+                <h3>Gửi đến em tình yêu, niềm vui và hạnh phúc vô bờ bến trong ngày đặc biệt này!</h3>
+            </div>
+        </div>
+    
+        <div class="block">
+            <div class="frames frame1">
+                <p>Ngày 20/10 đến rồi, chúc em ngày càng xinh đẹp, làm gì cũng thành công!
+                    Hy vọng em sẽ có một ngày tràn ngập niềm vui và thật nhiều khoảnh khắc hạnh phúc!
+                </p>
+            </div>
+        </div>
+    </div>
+
+   <script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const clickable = document.querySelector('.clickable');
+    
+    clickable.addEventListener('click', function () {
+        // Ẩn card và hiện block khi click vào h3
+        document.querySelector('.card').style.display = 'none';
+        document.querySelector('.block').style.display = 'flex';
+    });
+
+    const frames = document.querySelectorAll('.frames');
+    frames.forEach(frame => {
+        frame.addEventListener('click', function() {
+            // Ẩn block và hiện lại card khi click vào frames
+            document.querySelector('.block').style.display = 'none';
+            document.querySelector('.card').style.display = 'block';
+        });
+    });
+});
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const frames = document.querySelectorAll('.frames');
+    
+        frames.forEach(frame => {
+            frame.addEventListener('animationend', () => {
+                frame.classList.add('active'); // Thêm lớp active khi hiệu ứng scaleUp kết thúc
+            });
+        });
+    });
+    
+</script>
+
+</body>
+</html>

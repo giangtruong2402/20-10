@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital@1&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Bodoni Moda', serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(bday.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rounded-image {
+    border-radius: 50%; /* Tạo hình tròn cho ảnh */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Tạo hiệu ứng đổ bóng */
+}
+
+.container {
+    perspective: 1000px;
+}
+
+/* Đưa card ra giữa màn hình */
+.card {
+    width: 700px;
+    height: 550px;
+    transition: transform 0.6s; /* Thay đổi tốc độ xoay */
+    transform-style: preserve-3d;
+    animation: scaleUp 1.5s forwards; /* Thêm animation phóng to */
+}
+
+.block {
+    display: none; /* Ẩn frames ban đầu */
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.outside,
+.inside {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.outside {
+    background-image: url('backcard.jpg'); /* Đường dẫn đến hình ảnh */
+    background-size: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ khu vực */
+    background-position: center; /* Căn giữa hình ảnh */
+    box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.outside h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: salmon;
+    margin-bottom: 30px;
+}
+
+.inside {
+    background-color: rgb(255, 105, 180);
+    box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.inside h3 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Tăng kích thước cho frames */
+.frames {
+    width: 680px; /* Tăng kích thước width */
+    height: 500px; /* Tăng kích thước height */
+    background-image: url('backcard.jpg'); /* Đặt nền cho frames */
+    background-size: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ khu vực */
+    background-position: center; /* Căn giữa hình ảnh */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); /* Bóng đổ mềm mại hơn */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Căn giữa nội dung */
+    padding: 0 1rem; /* Điều chỉnh padding */
+    margin-bottom: 30px; /* Tăng khoảng cách giữa các frame */
+    border-radius: 15px; /* Bo góc mềm mại */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng chuyển động */
+    position: relative; /* Để sử dụng position cho nội dung bên trong */
+    animation: scaleUp 1.5s forwards; /* Thêm animation phóng to */
+}
+
+/* Hiệu ứng khi hover */
+.frames:hover {
+    transform: translateY(-5px); /* Nâng lên khi hover */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Tăng bóng đổ khi hover */
+}
+
+/* Animation cho frame sau khi phóng to */
+.frames.active {
+    animation: float 3s ease-in-out infinite; /* Thêm animation nhấp nhô */
+}
+
+.frames img {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Căn chỉnh dòng chữ trong frames */
+.frames p {
+    font-size: 22px; /* Tăng kích thước chữ */
+    font-weight: bold;
+    color: black; /* Đổi màu chữ thành đen */
+    position: absolute; /* Để có thể căn chỉnh vị trí */
+    top: 120px; /* Cách từ trên xuống */
+    right: 20px; /* Cách từ bên phải vào */
+    max-width: 80%; /* Giới hạn độ rộng của chữ */
+    text-align: right; /* Căn chỉnh chữ sang bên phải */
+    margin: 0; /* Không có margin */
+}
+
+/* Màu sắc cho các frames */
+.frames:nth-child(1) {
+    background-color: rgba(80, 162, 255, 0.8); /* Màu nền bán trong suốt cho frame1 */
+    color: black; /* Chữ màu đen cho frame1 */
+}
+
+.frames:nth-child(2) {
+    background-color: rgba(32, 218, 199, 0.8); /* Màu nền bán trong suốt cho frame2 */
+}
+
+/* Animation cho card và frames */
+@keyframes scaleUp {
+    0% {
+        transform: scale(0.3); /* Bắt đầu từ 30% kích thước */
+        opacity: 0; /* Bắt đầu với độ mờ */
+    }
+    100% {
+        transform: scale(1); /* Kết thúc với kích thước 100% */
+        opacity: 1; /* Kết thúc với độ mờ hoàn toàn */
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0); /* Vị trí ban đầu */
+    }
+    50% {
+        transform: translateY(-35px); /* Nâng lên 35px */
+    }
+}
+.clickable {
+    cursor: pointer; /* Con trỏ thay đổi khi di chuột qua */
+    transition: transform 0.2s ease; /* Hiệu ứng chuyển động */
+    color: rgb(225, 14, 67); /* Thay đổi màu chữ nếu muốn */
+    margin-top: 155px; /* Tạo khoảng cách 150px từ trên xuống */
+}
+.clickable:hover{
+    color: blue;
+}
+.clickable:active {
+    transform: scale(0.9); /* Khi nhấn, giảm kích thước */
+}
